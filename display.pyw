@@ -11,36 +11,41 @@ import socket
 import time
 import threading
 import pyperclip
+import winsound
 s=socket.socket(type=socket.SOCK_DGRAM)
 s.bind(('0.0.0.0',12345))
 count={}
 c=''
 msg=''
 def break_down(s):
-    ret=''
-    tmp=''
-    for i in range(len(s)):
-        tmp+=s[i]
-        if(i%30==29):
-            ret+=tmp
-            ret+='\n'
-            tmp=''
-        
-    ret+=tmp
-    #print(ret)
-    return ret
+    if s[-1]=='\a':
+        x=''
+        for i in range(len(s)-1):
+            x+=s[i]
+        s=x
+        if s.find('\n'):
+            return s
+        else:
+            return '\n'.join([s[i:i+30] for i in range(0, len(s), 30)])
+    if s.find('\n'):
+        return s
+    else:
+        return '\n'.join([s[i:i+30] for i in range(0, len(s), 30)])
 
 def open_url():
     webbrowser.open('https://hbzsoft.github.io/',new=0)
 def cp():
     pyperclip.copy(msg)
 def show():
+    
+    if msg[-1]=='\a':
+        winsound.Beep(1000, 1000)
     root = Tk()
     root.config(bg='black')
     root.wm_attributes('-topmost', True)
     # 设置窗口属性
-    root.title('LAN MESSAGE TRANSMISSION SYSTEM (LMTS) v1.2 by Bangze Han')
-
+    root.title('局域网信息传输系统 (LMTS) v1.3 by 韩邦泽 - 接收端')
+    
     # 向窗口添加组件
 
 
@@ -51,12 +56,12 @@ def show():
     label.config(state=DISABLED)
     label.pack()
     
-    frm_addr=Label(root,text='From  '+addr[0],font=('Lucida Handwriting',12),fg='white',bg='black')
+    frm_addr=Label(root,text='由  '+addr[0]+' 发送',fg='white',bg='black')
     frm_addr.pack()
-    copy = Button(root,text='Copy',command=cp)
+    copy = Button(root,text='复制',command=cp)
     copy.pack()
     
-    link = Button(root, text='Official Website: hbzsoft.github.io', font=('Arial', 8),command=open_url,fg="white",bg="black",borderwidth=0)
+    link = Button(root, text='官方网站: hbzsoft.github.io', font=('Arial', 8),command=open_url,fg="white",bg="black",borderwidth=0)
     
     link.pack()
     root.mainloop()
@@ -75,6 +80,8 @@ while True:
         else:
             count[ip]=int(time.time())
     msg=c.decode('gbk')
+ 
+    
     s.sendto('received'.encode(),addr)
     thd=threading.Thread(target=show)
     thd.start()
