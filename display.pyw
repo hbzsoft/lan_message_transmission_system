@@ -18,7 +18,10 @@ count={}
 c=''
 msg=''
 def break_down(s):
+    if not s:
+        return
     if s[-1]=='\a':
+        winsound.Beep(1000, 1000)
         x=''
         for i in range(len(s)-1):
             x+=s[i]
@@ -37,9 +40,9 @@ def open_url():
 def cp():
     pyperclip.copy(msg)
 def show():
+    if not msg:
+        return
     
-    if msg[-1]=='\a':
-        winsound.Beep(1000, 1000)
     root = Tk()
     root.config(bg='black')
     root.wm_attributes('-topmost', True)
