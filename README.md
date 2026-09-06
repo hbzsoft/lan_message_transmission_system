@@ -3,7 +3,7 @@
 一个轻量级的 **Windows 局域网弹窗消息工具**：在校园、实验室等局域网环境下，无需服务器即可向指定电脑发送纯文本消息并以醒目的置顶弹窗显示，适合电教委员 / 老师向全班电脑发布通知，或班级内部电脑间快速通信。
 
 - 官方正式版本：**v1.6**
-- 官方网站：https://hbzsoft.github.io/
+- 官方网站：[https://hanbangze.tech/](https://hanbangze.tech/)
 - 许可证：[GNU GPL v3](https://www.gnu.org/licenses/gpl-3.0.html)
 
 ---
@@ -159,4 +159,4 @@ v1.6（含其前身 v1.5 系列开发成果）在 v1.4 基础上引入了面向�
 
 本程序分发的目的是希望它有用，但**不附带任何担保**；甚至没有适销性或特定用途适用性的默示担保。详情请参阅 GNU 通用公共许可证。
 
-许可证全文见 https://www.gnu.org/licenses/gpl-3.0.html（仓库内副本见 `v1.4/COPYING`）。
+许可证全文见 https://www.gnu.org/licenses/gpl-3.0.html。
