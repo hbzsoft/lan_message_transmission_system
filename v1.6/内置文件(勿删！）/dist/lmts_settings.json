@@ -1,0 +1,9 @@
+{
+  "bg": "#1e2a3a",
+  "panel": "#27364a",
+  "text": "#eef3f8",
+  "accent": "#ffd166",
+  "btn": "#2f80ed",
+  "font_size": 11,
+  "last_ip": "192.168.1.10"
+}
